@@ -6,7 +6,7 @@ from fastapi_mail import FastMail, MessageSchema
 from constants.common import AppTranslationKeys
 from core.email_connection import conf
 from services.abstract.email_service import EmailService
-from utils.email_template_manager import template_manager
+from templates.utils import template_manager
 from utils.logger import setup_logger
 
 

@@ -19,23 +19,18 @@ GET_USER_ROLE_ROLE_BY_USER_ID = f"""
             '{UserResponseSchema.CREATED_AT}', u.created_at,
             '{UserResponseSchema.UPDATED_AT}', u.updated_at,
             '{UserResponseSchema.DELETED_AT}', u.deleted_at,
-            '{UserResponseSchema.ROLE_ID}', u.role_id,
-            '{UserResponseSchema.DEPARTMENT_ID}', u.department_id,
-            '{UserResponseSchema.ORG_ID}', u.org_id,
             '{UserResponseSchema.DISPLAY_NAME}', u.display_name,
             '{UserResponseSchema.EMAIL}', u.email,
             '{UserResponseSchema.PHONE_NUMBER}', u.phone_number,
             '{UserResponseSchema.AVATAR_URL}', u.avatar_url,
-            '{UserResponseSchema.AVATAR_FALLBACK}', u.avatar_fallback,
             '{UserResponseSchema.IS_VERIFIED}', u.is_verified,
-            '{UserResponseSchema.IS_CHANGE_PASSWORD}', u.is_change_password,
             '{UserResponseSchema.VERIFICATION_CODE}', u.verification_code,
             '{UserResponseSchema.ID}', u.id
         ),
         
     )
     FROM users u
-    JOIN roles r ON u.role_id = r.id AND r.is_active = TRUE AND r.deleted_at IS NULL
+    JOIN roles r AND r.is_active = TRUE AND r.deleted_at IS NULL
     WHERE u.is_active = TRUE AND u.deleted_at IS NULL
     AND u.id = :user_id
     LIMIT 1;

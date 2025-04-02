@@ -2,14 +2,15 @@ import os
 import sys
 from logging.config import fileConfig
 
+from sqlalchemy import engine_from_config, pool
+
 from alembic import context
 from core.env import env
 from models import *
 from models.base.class_base import Base
-from sqlalchemy import engine_from_config, pool
 
 # Add project directory to sys.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -30,9 +31,10 @@ target_metadata = Base.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 config.set_main_option(
-    'sqlalchemy.url',
-    f"postgresql://{env.POSTGRES_ALLYAI_ORGS_USER}:{env.POSTGRES_ALLYAI_ORGS_PASSWORD}@{env.POSTGRES_ALLYAI_ORGS_SERVER}:{env.POSTGRES_ALLYAI_ORGS_PORT}/{env.POSTGRES_ALLYAI_ORGS_DB}"
+    "sqlalchemy.url",
+    f"postgresql://{env.POSTGRES_TRIPC_SOLUTIONS_USER}:{env.POSTGRES_TRIPC_SOLUTIONS_PASSWORD}@{env.POSTGRES_TRIPC_SOLUTIONS_SERVER}:{env.POSTGRES_TRIPC_SOLUTIONS_PORT}/{env.POSTGRES_TRIPC_SOLUTIONS_DB}",
 )
+
 
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode.
@@ -72,9 +74,7 @@ def run_migrations_online() -> None:
     )
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()

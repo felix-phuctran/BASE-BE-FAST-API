@@ -30,6 +30,7 @@ COPY models /app/models
 COPY repositories /app/repositories
 COPY schema /app/schema
 COPY services /app/services
+COPY templates /app/templates
 COPY utils /app/utils
 COPY main.py /app/main.py
 COPY alembic.ini /app/alembic.ini

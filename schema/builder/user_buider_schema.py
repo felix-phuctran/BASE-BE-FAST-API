@@ -2,20 +2,13 @@ import uuid
 from typing import Optional
 
 from pydantic import ValidationError
+
 from schema.base.user_base_schema import UserBaseSchema
 
 
 class UserBuilderSchema:
     def __init__(self):
         self._data = {}
-
-    def set_role_id(self, role_id: uuid.UUID):
-        self._data[UserBaseSchema.ROLE_ID] = role_id
-        return self
-
-    def set_org_id(self, org_id: uuid.UUID):
-        self._data[UserBaseSchema.ORG_ID] = org_id
-        return self
 
     def set_display_name(self, display_name: str):
         self._data[UserBaseSchema.DISPLAY_NAME] = display_name

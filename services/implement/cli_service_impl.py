@@ -1,13 +1,13 @@
 from datetime import datetime
 
-from abstract.cli_service import CliService
-from logger import setup_logger
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from constants.common import AppTranslationKeys
 from models.users import Users
-from utils.crypto import hash
+from services.abstract.cli_service import CliService
+from utils import hash
+from utils.logger import setup_logger
 
 
 class CliServiceImpl(CliService):
@@ -32,7 +32,7 @@ class CliServiceImpl(CliService):
 
     async def _initialize_user(self, db_session: Session) -> str:
         """
-        Initialize a supplier by executing a CLI command.
+        Initialize a user by executing a CLI command.
 
         Returns:
             str: The output of the command execution
@@ -64,33 +64,31 @@ class CliServiceImpl(CliService):
                 verification_code=item["verification_code"],
                 created_at=datetime.utcnow(),
                 updated_at=datetime.utcnow(),
-                delete_at=None,
+                deleted_at=None,
                 is_active=True,
             )
             users.append(user)
 
         try:
             # 1️⃣ Delete old data and reset ID
-            self._db.execute(text("TRUNCATE TABLE users RESTART IDENTITY CASCADE"))
-
-            # 2️⃣ Insert new data into users table
-            self._db.bulk_save_objects(users)
-            self._db.commit()
-
-            # 3️⃣ Update sequence ID
-            self._db.execute(
-                text(
-                    """
-            SELECT setval('suppliers_id_seq', (SELECT COALESCE(MAX(id), 1) FROM users) + 1);
-            """
-                )
+            await self._db.execute(
+                text("TRUNCATE TABLE users RESTART IDENTITY CASCADE")
             )
-            self._db.commit()
 
-            print("[CLI] Created users successfully")
+            # 2️⃣ Insert new data into users table (using bulk_save_objects)
+            self._db.add_all(users)
+            await self._db.commit()
+
+            # 3️⃣ Update sequence ID using ORDER BY for UUID
+
+            await self._db.commit()
+
+            print("[CLI] Created users successfully.")
+
+            return "[CLI] Created users successfully."
 
         except Exception as e:
-            self._db.rollback()  # Rollback if error occurs
+            await self._db.rollback()  # Rollback if error occurs
             print(f"[CLI] Error: {e}")
             return e
 

@@ -9,10 +9,7 @@ from dependencies import database_postgresql
 from schema.dto.user_role_department_permission_dto import (
     UserRoleDepartmentPermissionDto,
 )
-from schema.request.user_management_request_schema import (
-    AssignRoleSchema,
-    LockUnlockAccountSchema,
-)
+from schema.request.user_management_request_schema import AssignRoleSchema
 from services.abstract.user_management_service import UserManagementService
 
 router = APIRouter()

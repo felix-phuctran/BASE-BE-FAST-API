@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 
-class CliService(BaseModel, ABC):
+class CliService(ABC):
     """Abstract base class for CLI service operations."""
 
     @abstractmethod
@@ -20,7 +20,7 @@ class CliService(BaseModel, ABC):
         pass
 
     @abstractmethod
-    async def _initialize_supplier(self, db_session: Session) -> str:
+    async def _initialize_user(self, db_session: Session) -> str:
         """
         Abstract method for initializing a supplier in the CLI.
         This method should handle the setup and initialization of supplier-specific configurations.

@@ -1,13 +1,13 @@
 # FastAPI Base Project
 
-## Introduction
+## 📚 Introduction
 
 This is a basic project using **FastAPI**, integrated with **Midgrade** and **CLI** to support system management tasks.
 
-## Project Structure
+## 📚 Project Structure
 
 ```
-.vscode/
+.vscode/             # VSCode configuration
 alembic/             # Database migration management
 api/                 # API routes
 cli/                 # CLI commands for project management
@@ -16,22 +16,22 @@ container/           # Dependency injection management
 core/                # System configuration
 ...
 services/            # Business logic processing
-utils/               # Utility helpers
+utils/               # Helper utilities
 main.py              # Main application entry point
-requirements.txt     # List of required libraries
+requirements.txt     # Required libraries list
 Dockerfile           # Docker configuration
 ```
 
-## Installation
+## 🛠️ Installation
 
-### 1. Clone the project
+### 1. ✨ Clone Project
 
 ```bash
 git clone <repository-url>
 cd <project-folder>
 ```
 
-### 2. Create and activate virtual environment
+### 2. ⚙️ Create and Activate Virtual Environment
 
 ```bash
 python -m venv venv
@@ -39,15 +39,15 @@ source venv/bin/activate  # On macOS/Linux
 venv\Scripts\activate     # On Windows
 ```
 
-### 3. Install required libraries
+### 3. 💪 Install Required Libraries
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Running the Application
+## 🏢 Running the Application
 
-### 1. Run FastAPI server
+### 1. 🌐 Run FastAPI Server
 
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
@@ -58,7 +58,7 @@ Open browser and access:
 - API Docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 - OpenAPI JSON: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json)
 
-### 2. Run CLI
+### 2. 🛠️ Run CLI
 
 The project supports CLI commands for system management.
 
@@ -69,32 +69,31 @@ cd cli/seed_data
 python initialize_database.py
 ```
 
-### 3. Run database migration
+### 3. 📂 Run Database Migration
 
 ```bash
 alembic upgrade head
 ```
 
-## Running with Docker
+## 🛠️ Run with Docker
 
-### 1. Build image
-
-```bash
-docker build -t fastapi-app .
-```
-
-### 2. Run container
+### 1. 🛠️ Build Image
 
 ```bash
-docker run -p 8000:8000 fastapi-app
+docker build -t tripc-solutions .
 ```
 
-## Notes
+### 2. 💨 Run Container
 
-- Ensure you have **Python 3.9+**
-- Update `.env` according to your environment configuration before running
+```bash
+docker run -p 8000:8000 tripc-solutions
+```
 
-## Contact
+## 📝 Notes
 
-If you have any issues, please contact the development team for support.
+- Ensure **Python 3.9+**
+- Update `.env` according to environment configuration before running
 
+## 📢 Contact
+
+If you encounter any issues, please contact the development team for support! 🌟

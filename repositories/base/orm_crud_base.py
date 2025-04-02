@@ -40,7 +40,7 @@ class ORMCRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     def __init__(self, model: Type[ModelType]):
         """
         Initializes the ORMCRUDBase with a specific SQLAlchemy model class.
-        
+
         Args:
             model (Type[ModelType]): The SQLAlchemy model class.
         """
@@ -62,7 +62,9 @@ class ORMCRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
             return obj
         return None
 
-    async def get_including_soft_deleted(self, db: AsyncSession, id: Any) -> Optional[ModelType]:
+    async def get_including_soft_deleted(
+        self, db: AsyncSession, id: Any
+    ) -> Optional[ModelType]:
         """
         Retrieves a single record by its ID, including soft-deleted records.
 
@@ -212,7 +214,9 @@ class ORMCRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         total = await db.scalar(query.with_entities(func.count()))
 
         # Pagination
-        query = query.offset(filter_param.get("skip", 0)).limit(filter_param.get("limit", 10))
+        query = query.offset(filter_param.get("skip", 0)).limit(
+            filter_param.get("limit", 10)
+        )
         results = await db.execute(query)
 
         return {
@@ -239,7 +243,9 @@ class ORMCRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         for field in ["created_at", "updated_at", "deleted_at", "expires_at"]:
             if field in obj_in_data and isinstance(obj_in_data[field], str):
                 try:
-                    obj_in_data[field] = datetime.fromisoformat(obj_in_data[field].replace('Z', '+00:00'))
+                    obj_in_data[field] = datetime.fromisoformat(
+                        obj_in_data[field].replace("Z", "+00:00")
+                    )
                 except ValueError:
                     pass
 
@@ -254,7 +260,7 @@ class ORMCRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
             await db.rollback()
             raise HTTPException(
                 status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                detail=e.orig.diag.message_detail or "Key already exists"
+                detail=e.orig.diag.message_detail or "Key already exists",
             ) from None
 
     async def update(
@@ -331,7 +337,7 @@ class ORMCRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
 
     async def remove(self, db: AsyncSession, *, id: Any) -> ModelType:
         """
-        Soft-deletes a record by setting 'deleted_at' to the current time 
+        Soft-deletes a record by setting 'deleted_at' to the current time
         (and optionally 'is_active' to False if defined).
 
         Args:
@@ -380,7 +386,9 @@ class ORMCRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         await db.commit()
         return obj
 
-    async def get_one_by_or_fail(self, db: AsyncSession, filter: dict = {}) -> Optional[ModelType]:
+    async def get_one_by_or_fail(
+        self, db: AsyncSession, filter: dict = {}
+    ) -> Optional[ModelType]:
         """
         Retrieves a single record by applying filter criteria; raises 404 if no record matches.
 
@@ -399,7 +407,9 @@ class ORMCRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
             self._throw_not_found_exception()
         return model
 
-    async def get_one_by(self, db: AsyncSession, filter: dict = {}) -> Optional[ModelType]:
+    async def get_one_by(
+        self, db: AsyncSession, filter: dict = {}
+    ) -> Optional[ModelType]:
         """
         Retrieves a single record by applying filter criteria, ignoring soft-deleted records.
 
@@ -419,7 +429,9 @@ class ORMCRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         result = await db.execute(stmt)
         return result.scalars().first()
 
-    async def get_one_including_soft_deleted_by(self, db: AsyncSession, filter: dict = {}) -> Optional[ModelType]:
+    async def get_one_including_soft_deleted_by(
+        self, db: AsyncSession, filter: dict = {}
+    ) -> Optional[ModelType]:
         """
         Retrieves a single record by applying filter criteria, including soft-deleted records.
 
@@ -500,7 +512,7 @@ class ORMCRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
             await db.rollback()
             raise HTTPException(
                 status_code=422,
-                detail=e.orig.diag.message_detail or "Key already exists"
+                detail=e.orig.diag.message_detail or "Key already exists",
             ) from None
 
     async def save(self, db: AsyncSession, model_obj: ModelType) -> ModelType:
@@ -520,9 +532,7 @@ class ORMCRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         return model_obj
 
     async def batch_insert_with_objects(
-        self,
-        db: AsyncSession,
-        objects: List[ModelType]
+        self, db: AsyncSession, objects: List[ModelType]
     ) -> List[Dict[str, Any]]:
         """
         Performs a batch insert of multiple ORM objects (already constructed model instances).
@@ -539,22 +549,17 @@ class ORMCRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         """
         try:
             mappings = [jsonable_encoder(obj) for obj in objects]
-            await db.execute(
-                self.model.__table__.insert().values(mappings)
-            )
+            await db.execute(self.model.__table__.insert().values(mappings))
             await db.commit()
             return mappings
         except Exception as e:
             await db.rollback()
             raise HTTPException(
-                status_code=422,
-                detail=f"Batch insert failed: {str(e)}"
+                status_code=422, detail=f"Batch insert failed: {str(e)}"
             )
 
     async def batch_insert_with_mappings(
-        self,
-        db: AsyncSession,
-        mappings: List[Dict[str, Any]]
+        self, db: AsyncSession, mappings: List[Dict[str, Any]]
     ) -> List[Dict[str, Any]]:
         """
         Performs a batch insert using raw dictionary mappings (column->value).
@@ -570,14 +575,11 @@ class ORMCRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
             HTTPException: If any error occurs during batch insert.
         """
         try:
-            await db.execute(
-                self.model.__table__.insert().values(mappings)
-            )
+            await db.execute(self.model.__table__.insert().values(mappings))
             await db.commit()
             return mappings
         except Exception as e:
             await db.rollback()
             raise HTTPException(
-                status_code=422,
-                detail=f"Batch insert failed: {str(e)}"
+                status_code=422, detail=f"Batch insert failed: {str(e)}"
             )
