@@ -1,0 +1,17 @@
+import asyncio
+from typing import Any, Dict
+
+from repositories.orm.orm_crud_{{name}} import \
+    orm_crud_{{name}}
+from schema.request.{{name}}_request_schema import \
+    {{model}}CreateSchema
+from services.abstract.{{name}}_service import \
+    {{model}}Service
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
+from utils.logger import setup_logger
+
+
+class {{model}}ServiceImpl({{model}}Service):
+    def __init__(self):
+        self._logger = setup_logger()
+        self._orm_{{name}} = orm_crud_{{name}}

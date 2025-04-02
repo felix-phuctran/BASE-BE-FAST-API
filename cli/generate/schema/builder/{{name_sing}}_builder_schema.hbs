@@ -1,0 +1,16 @@
+from pydantic import ValidationError
+from schema.base.{{name}}_base_schema import {{model}}BaseSchema
+
+
+class {{model}}Builder:
+    def __init__(self):
+        self._data = {}
+
+    # Add all the fields here
+
+    def build(self) -> {{model}}BaseSchema:
+        try:
+            return {{model}}BaseSchema(**self._data)
+        except ValidationError as e:
+            print("❌ Validation Error:", e)
+            return None

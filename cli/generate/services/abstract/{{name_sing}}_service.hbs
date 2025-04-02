@@ -1,0 +1,11 @@
+from abc import ABC, abstractmethod
+from typing import Any, Dict
+
+from pydantic import BaseModel
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
+
+
+class {{model}}Service(BaseModel, ABC):
+    class Config:
+        arbitrary_types_allowed = True
+        extra = "allow"

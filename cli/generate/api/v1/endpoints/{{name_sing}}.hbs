@@ -1,0 +1,10 @@
+from dependencies import database_postgresql
+from fastapi import APIRouter, Depends, status
+from services.abstract.{{name}}_service import \
+    {{model}}Service
+from services.implement.{{name}}_service_impl import \
+    {{model}}ServiceImpl
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
+
+router = APIRouter()
+{{name}}_service: {{model}}Service = {{model}}ServiceImpl()

@@ -1,0 +1,23 @@
+# Python cache files
+*__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# IDE configurations
+.vscode
+.idea
+
+# Git related
+.git
+.gitignore
+
+
+
+# Generated ERD
+/node_modules
+/dist
+generate_erd.py
+package-lock.json
+package.json
+schema.sql

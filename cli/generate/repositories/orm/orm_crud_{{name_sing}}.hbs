@@ -1,0 +1,16 @@
+from models.{{names}} import {{models}}
+from repositories.base.orm_crud_base import ORMCRUDBase
+from schema.request.{{name}}_request_schema import (
+    {{model}}CreateSchema, {{model}}UpdateSchema)
+
+
+class ORMCRUD{{model}}(
+    ORMCRUDBase[
+        {{models}},
+        {{model}}CreateSchema,
+        {{model}}UpdateSchema
+    ]
+):
+    pass
+
+orm_crud_{{name}} = ORMCRUD{{model}}({{models}})

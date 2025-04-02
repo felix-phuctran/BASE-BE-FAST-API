@@ -1,0 +1,14 @@
+import uuid
+from typing import ClassVar
+
+from schema.base._soft_delete_schema import SoftDeleteSchema
+from schema.base.{{name}}_base_schema import \
+    {{model}}BaseSchema
+
+
+class {{model}}ResponseSchema({{model}}BaseSchema, SoftDeleteSchema):
+    ID: ClassVar[str] = "id"
+    id: uuid.UUID
+    
+    class Config:
+        from_attributes = True

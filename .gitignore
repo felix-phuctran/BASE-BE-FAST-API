@@ -1,0 +1,15 @@
+*__pycache__
+.vscode
+/log
+.env
+.idea
+build.sh
+/questions
+
+/node_modules
+/example
+
+generate_erd.py
+package-lock.json
+package.json
+/_dist
