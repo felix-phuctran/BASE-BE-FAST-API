@@ -80,13 +80,13 @@ alembic upgrade head
 ### 1. 🛠️ Build Image
 
 ```bash
-docker build -t tripc-solutions .
+docker build -t fastapi-app .
 ```
 
 ### 2. 💨 Run Container
 
 ```bash
-docker run -p 8000:8000 tripc-solutions
+docker run -p 8000:8000 fastapi-app
 ```
 
 ## 📝 Notes
