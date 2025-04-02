@@ -1,81 +1,81 @@
 # FastAPI Base Project
 
-## Giới thiệu
+## Introduction
 
-Đây là dự án cơ bản sử dụng **FastAPI**, có tích hợp **Midgrade** và **CLI** để hỗ trợ các tác vụ quản lý hệ thống.
+This is a basic project using **FastAPI**, integrated with **Midgrade** and **CLI** to support system management tasks.
 
-## Cấu trúc dự án
+## Project Structure
 
 ```
 .vscode/
-alembic/             # Quản lý migration database
-api/                 # Các route API
-cli/                 # Lệnh CLI để quản lý dự án
-constants/           # Chứa các hằng số
-container/           # Quản lý dependency injection
-core/                # Cấu hình hệ thống
+alembic/             # Database migration management
+api/                 # API routes
+cli/                 # CLI commands for project management
+constants/           # Constants
+container/           # Dependency injection management
+core/                # System configuration
 ...
-services/            # Xử lý logic nghiệp vụ
-utils/               # Các tiện ích hỗ trợ
-main.py              # Điểm khởi chạy chính của ứng dụng
-requirements.txt     # Danh sách thư viện cần thiết
-Dockerfile           # Cấu hình Docker
+services/            # Business logic processing
+utils/               # Utility helpers
+main.py              # Main application entry point
+requirements.txt     # List of required libraries
+Dockerfile           # Docker configuration
 ```
 
-## Cài đặt
+## Installation
 
-### 1. Clone dự án
+### 1. Clone the project
 
 ```bash
 git clone <repository-url>
 cd <project-folder>
 ```
 
-### 2. Tạo và kích hoạt môi trường ảo
+### 2. Create and activate virtual environment
 
 ```bash
 python -m venv venv
-source venv/bin/activate  # Trên macOS/Linux
-venv\Scripts\activate     # Trên Windows
+source venv/bin/activate  # On macOS/Linux
+venv\Scripts\activate     # On Windows
 ```
 
-### 3. Cài đặt các thư viện cần thiết
+### 3. Install required libraries
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Chạy ứng dụng
+## Running the Application
 
-### 1. Chạy server FastAPI
+### 1. Run FastAPI server
 
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-Mở trình duyệt và truy cập:
+Open browser and access:
 
 - API Docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 - OpenAPI JSON: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json)
 
-### 2. Chạy CLI
+### 2. Run CLI
 
-Dự án có hỗ trợ các lệnh CLI để quản lý hệ thống.
+The project supports CLI commands for system management.
 
-Ví dụ:
+Example:
 
 ```bash
 cd cli/seed_data
 python initialize_database.py
 ```
 
-### 3. Chạy migration database
+### 3. Run database migration
 
 ```bash
 alembic upgrade head
 ```
 
-## Chạy với Docker
+## Running with Docker
 
 ### 1. Build image
 
@@ -83,17 +83,18 @@ alembic upgrade head
 docker build -t fastapi-app .
 ```
 
-### 2. Chạy container
+### 2. Run container
 
 ```bash
 docker run -p 8000:8000 fastapi-app
 ```
 
-## Ghi chú
+## Notes
 
-- Đảm bảo có **Python 3.9+**
-- Cập nhật `.env` theo cấu hình môi trường của bạn trước khi chạy
+- Ensure you have **Python 3.9+**
+- Update `.env` according to your environment configuration before running
 
-## Liên hệ
+## Contact
 
-Nếu có bất kỳ vấn đề gì, hãy liên hệ nhóm phát triển để được hỗ trợ.
+If you have any issues, please contact the development team for support.
+
