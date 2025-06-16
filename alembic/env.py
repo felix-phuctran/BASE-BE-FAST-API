@@ -32,7 +32,7 @@ target_metadata = Base.metadata
 # ... etc.
 config.set_main_option(
     "sqlalchemy.url",
-    f"postgresql://{env.POSTGRES_TRIPC_SOLUTIONS_USER}:{env.POSTGRES_TRIPC_SOLUTIONS_PASSWORD}@{env.POSTGRES_TRIPC_SOLUTIONS_SERVER}:{env.POSTGRES_TRIPC_SOLUTIONS_PORT}/{env.POSTGRES_TRIPC_SOLUTIONS_DB}",
+    f"postgresql://{env.POSTGRES_ADOOR_USER}:{env.POSTGRES_ADOOR_PASSWORD}@{env.POSTGRES_ADOOR_SERVER}:{env.POSTGRES_ADOOR_PORT}/{env.POSTGRES_ADOOR_DB}",
 )
 
 

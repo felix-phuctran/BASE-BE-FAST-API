@@ -43,7 +43,7 @@ class CliServiceImpl(CliService):
                 "id": "223e4567-e89b-12d3-a456-426614174017",
                 "display_name": "admin",
                 "email": "admin@gmail.com",
-                "password_hash": hash("Allyai123456@"),
+                "password_hash": hash("adoor123456@"),
                 "avatar_url": "https://frontend-assistain-ai-chatbot.vercel.app/logo/default_image_user.svg",
                 "is_verified": True,
                 "phone_number": "0123456789",

@@ -91,7 +91,7 @@ class EmailServiceImpl(EmailService):
         """
         self._logger.info(f"Sending verification email to {user_info['email']}")
         return await self._send_email(
-            subject="Verify Email Address for Ally AI",
+            subject="Verify Email Address for Adoor",
             recipients=[user_info["email"]],
             template_path="verification.html",
             template_data={
@@ -118,7 +118,7 @@ class EmailServiceImpl(EmailService):
         self._logger.info(f"Sending password reset email to {email}")
         try:
             return await self._send_email(
-                subject="Reset Your Password - Ally AI",
+                subject="Reset Your Password - Adoor",
                 recipients=[email],
                 template_path="reset_password.html",
                 template_data={
@@ -231,7 +231,7 @@ class EmailServiceImpl(EmailService):
         """
         self._logger.info(f"Sending account approval notification to {email}")
         return await self._send_email(
-            subject="Account Approved by ALLY AI JSC",
+            subject="Account Approved by Adoor",
             recipients=[email],
             template_path="account_approved.html",
             template_data={"display_name": display_name},

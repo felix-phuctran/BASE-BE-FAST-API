@@ -1,5 +1,4 @@
 # Standard library imports
-import logging
 from typing import Any, Dict
 
 # Third-party imports

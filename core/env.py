@@ -17,18 +17,14 @@ class Env(BaseSettings):
     REDIS_URL: str = os.environ.get("REDIS_URL")
 
     # Postgres configuration
-    POSTGRES_TRIPC_SOLUTIONS_SERVER: str = os.environ.get(
-        "POSTGRES_TRIPC_SOLUTIONS_SERVER"
-    )
-    POSTGRES_TRIPC_SOLUTIONS_PORT: int = os.environ.get("POSTGRES_TRIPC_SOLUTIONS_PORT")
-    POSTGRES_TRIPC_SOLUTIONS_USER: str = os.environ.get("POSTGRES_TRIPC_SOLUTIONS_USER")
-    POSTGRES_TRIPC_SOLUTIONS_PASSWORD: str = os.environ.get(
-        "POSTGRES_TRIPC_SOLUTIONS_PASSWORD"
-    )
-    POSTGRES_TRIPC_SOLUTIONS_DB: str = os.environ.get("POSTGRES_TRIPC_SOLUTIONS_DB")
+    POSTGRES_ADOOR_SERVER: str = os.environ.get("POSTGRES_ADOOR_SERVER")
+    POSTGRES_ADOOR_PORT: int = os.environ.get("POSTGRES_ADOOR_PORT")
+    POSTGRES_ADOOR_USER: str = os.environ.get("POSTGRES_ADOOR_USER")
+    POSTGRES_ADOOR_PASSWORD: str = os.environ.get("POSTGRES_ADOOR_PASSWORD")
+    POSTGRES_ADOOR_DB: str = os.environ.get("POSTGRES_ADOOR_DB")
 
     # SQL Alchemy configuration
-    SQLALCHEMY_TRIPC_SOLUTIONS_URI: Optional[PostgresDsn] = None
+    SQLALCHEMY_ADOOR_URI: Optional[PostgresDsn] = None
 
     # JWT configuration
     JWT_SECRET_KEY: str = os.environ.get("JWT_SECRET_KEY")
@@ -62,9 +58,6 @@ class Env(BaseSettings):
     MAIL_SSL_TLS: bool = os.environ.get("MAIL_SSL_TLS")
     USE_CREDENTIALS: bool = os.environ.get("USE_CREDENTIALS")
 
-    # Email configuration for CEO
-    CEO_EMAIL: str = os.environ.get("CEO_EMAIL")
-
     # WARN: Remember to configure these two environment variables in docker-compose.yml after removing them
     # AWS_ACCESS_KEY_ID: str = os.environ.get("AWS_ACCESS_KEY_ID")
     # AWS_SECRET_ACCESS_KEY: str = os.environ.get("AWS_SECRET_ACCESS_KEY")
@@ -76,18 +69,18 @@ class Env(BaseSettings):
     CHECK_IP_URL: str = os.environ.get("CHECK_IP_URL")
     CLIENT_IP: str = os.environ.get("CLIENT_IP")
 
-    @field_validator("SQLALCHEMY_TRIPC_SOLUTIONS_URI", mode="before")
+    @field_validator("SQLALCHEMY_ADOOR_URI", mode="before")
     @classmethod
     def assemble_db_connection(cls, v: Optional[str], info: FieldValidationInfo) -> Any:
         if isinstance(v, str):
             return v
         return PostgresDsn.build(
             scheme="postgresql+asyncpg",
-            username=info.data.get("POSTGRES_TRIPC_SOLUTIONS_USER"),
-            password=info.data.get("POSTGRES_TRIPC_SOLUTIONS_PASSWORD"),
-            host=info.data.get("POSTGRES_TRIPC_SOLUTIONS_SERVER"),
-            port=info.data.get("POSTGRES_TRIPC_SOLUTIONS_PORT"),
-            path=info.data.get("POSTGRES_TRIPC_SOLUTIONS_DB"),
+            username=info.data.get("POSTGRES_ADOOR_USER"),
+            password=info.data.get("POSTGRES_ADOOR_PASSWORD"),
+            host=info.data.get("POSTGRES_ADOOR_SERVER"),
+            port=info.data.get("POSTGRES_ADOOR_PORT"),
+            path=info.data.get("POSTGRES_ADOOR_DB"),
         )
 
     class Config:

@@ -4,10 +4,7 @@ from typing import Optional
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from schema.dto.user_role_department_permission_dto import (
-    UserRoleDepartmentPermissionDto,
-)
-from schema.response.user_response_schema import UserResponseSchema
+from schema.user_schema import UserResponseSchema, UserRoleDepartmentPermissionDto
 from utils.logger import setup_logger
 
 logger = setup_logger()
@@ -30,7 +27,6 @@ GET_USER_ROLE_ROLE_BY_USER_ID = f"""
         
     )
     FROM users u
-    JOIN roles r AND r.is_active = TRUE AND r.deleted_at IS NULL
     WHERE u.is_active = TRUE AND u.deleted_at IS NULL
     AND u.id = :user_id
     LIMIT 1;

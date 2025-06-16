@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from core.env import Env, env
 
 async_engine = create_async_engine(
-    env.SQLALCHEMY_TRIPC_SOLUTIONS_URI.unicode_string(),
+    env.SQLALCHEMY_ADOOR_URI.unicode_string(),
     pool_size=10,  # Default number of connections to keep in the pool
     max_overflow=20,  # Extra connections allowed when pool is full
     pool_timeout=30,  # Max seconds to wait for a connection before timing out
@@ -24,7 +24,7 @@ AsyncSessionLocal = async_sessionmaker(
 
 
 engine = create_engine(
-    env.SQLALCHEMY_TRIPC_SOLUTIONS_URI.unicode_string(),
+    env.SQLALCHEMY_ADOOR_URI.unicode_string(),
     pool_size=20,
     max_overflow=40,
     pool_timeout=60,
