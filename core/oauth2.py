@@ -11,9 +11,7 @@ from constants.common import AppTranslationKeys
 from core.env import env
 from dependencies import database_postgresql
 from repositories.orm.get_user_role_by_user_id import get_user_role_by_user_id
-from schema.dto.user_role_department_permission_dto import (
-    UserRoleDepartmentPermissionDto,
-)
+from schema.user_schema import UserRoleDepartmentPermissionDto
 
 # Initialize translation
 translation = AppTranslationKeys()
