@@ -1,6 +1,6 @@
 from redis.asyncio import Redis
 
-from core.env import env
+from config.env import env
 
 
 def get_redis() -> Redis:
@@ -14,4 +14,4 @@ def get_redis() -> Redis:
     Author:
         tranvanphuc.dev.it.2002@gmail.com
     """
-    return Redis.from_url(env.REDIS_URL,  decode_responses=True)
+    return Redis.from_url(env.REDIS_URL, decode_responses=True)

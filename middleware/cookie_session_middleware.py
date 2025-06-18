@@ -1,13 +1,13 @@
 from starlette.middleware.sessions import SessionMiddleware
 
-from core.env import env
+from config.env import env
 
 
 def add_cookie_session_middleware(app):
     """
     Add cookie-based session middleware to the FastAPI application.
     This middleware handles client-side session storage using encrypted cookies.
-    
+
     Args:
         app: FastAPI application instance
     """
@@ -18,4 +18,4 @@ def add_cookie_session_middleware(app):
         # max_age=1800,  # 30 minutes
         # same_site="lax",
         # https_only=env.ENV != "local"  # Only use HTTPS in non-local environments
-    ) 
+    )

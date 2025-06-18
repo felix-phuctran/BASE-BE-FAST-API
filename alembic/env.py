@@ -6,7 +6,7 @@ from databases.base.class_base import Base
 from sqlalchemy import engine_from_config, pool
 
 from alembic import context
-from core.env import env
+from config.env import env
 from databases import *
 
 # Add project directory to sys.path

@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.gzip import GZipMiddleware
 
 from api.v1.api import api_router
-from core.env import env
+from config.env import env
 from middleware.auth_session_middleware import check_auth_session_middleware
 from middleware.cookie_session_middleware import add_cookie_session_middleware
 from middleware.cors_middleware import add_cors_middleware
