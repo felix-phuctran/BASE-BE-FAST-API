@@ -1,4 +1,5 @@
-from models.user_sessions import UserSessions
+from databases.user_sessions import UserSessions
+
 from repositories.base.orm_crud_base import ORMCRUDBase
 from schema.user_session_schema import UserSessionCreateSchema, UserSessionUpdateSchema
 

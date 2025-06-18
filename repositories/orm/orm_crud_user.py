@@ -1,4 +1,5 @@
-from models.users import Users
+from databases.users import Users
+
 from repositories.base.orm_crud_base import ORMCRUDBase
 from schema.user_schema import UserCreateSchema, UserUpdateSchema
 

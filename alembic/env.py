@@ -2,12 +2,12 @@ import os
 import sys
 from logging.config import fileConfig
 
+from databases.base.class_base import Base
 from sqlalchemy import engine_from_config, pool
 
 from alembic import context
 from core.env import env
-from models import *
-from models.base.class_base import Base
+from databases import *
 
 # Add project directory to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))

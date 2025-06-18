@@ -1,16 +1,16 @@
 # Standard library imports
 from typing import Any, Dict
 
+# Models
+from databases.user_sessions import UserSessions
+from databases.users import Users
+
 # Third-party imports
 from redis import asyncio as aioredis
 
 # Application constants
 from constants.common import AppTranslationKeys
 from core.env import Env
-
-# Models
-from models.user_sessions import UserSessions
-from models.users import Users
 
 # Repositories - ORM
 from repositories.orm.orm_crud_user import ORMCRUDUser
