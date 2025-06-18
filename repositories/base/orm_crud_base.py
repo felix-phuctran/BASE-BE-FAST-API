@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import Any, Dict, Generic, List, Optional, Type, TypeVar, Union
 
+from databases.base.class_base import Base
 from fastapi import HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
@@ -8,7 +9,6 @@ from sqlalchemy import and_, func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from models.base.class_base import Base
 from repositories.base.query_builder import get_filter, query_builder
 from utils.crypto import clone_model
 from utils.string_case import decamelize

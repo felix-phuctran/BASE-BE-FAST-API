@@ -23,7 +23,7 @@ def snake_case(s):
     ).lower()
 
 
-# Base class for ORM models with common columns
+# Base class for ORM databases with common columns
 @as_declarative()
 class Base:
     __name__: str
@@ -37,13 +37,12 @@ class Base:
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     is_active = Column(Boolean, default=True)
     created_at = Column(
-        DateTime(timezone=True),
-        default=lambda: datetime.now(timezone.utc)
+        DateTime(timezone=True), default=lambda: datetime.now(timezone.utc)
     )
     updated_at = Column(
         DateTime(timezone=True),
         default=lambda: datetime.now(timezone.utc),
-        onupdate=lambda: datetime.now(timezone.utc)
+        onupdate=lambda: datetime.now(timezone.utc),
     )
     deleted_at = Column(DateTime(timezone=True), default=None)
 
@@ -53,7 +52,7 @@ class Base:
         return snake_case(cls.__name__)
 
 
-# Base class for ORM models without common columns but with dynamic table name
+# Base class for ORM databases without common columns but with dynamic table name
 @as_declarative()
 class BaseMTM:
     __name__: str

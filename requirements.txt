@@ -20,6 +20,7 @@ click==8.1.7
 colorama==0.4.6
 colorlog==6.8.2
 comm==0.2.2
+motor>=4.0
 cryptography==42.0.5
 cssselect==1.2.0
 cssutils==2.10.2

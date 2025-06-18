@@ -1,8 +1,7 @@
+from databases.base.class_base import Base
 from sqlalchemy import Boolean, Column, ForeignKey, Index, String, Text
 from sqlalchemy.dialects.postgresql.base import UUID
 from sqlalchemy.orm import relationship
-
-from models.base.class_base import Base
 
 
 class Users(Base):

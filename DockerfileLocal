@@ -26,7 +26,7 @@ COPY core /app/core
 COPY dependencies /app/dependencies
 COPY internal /app/internal
 COPY middleware /app/middleware
-COPY models /app/models
+COPY databases /app/databases
 COPY repositories /app/repositories
 COPY schema /app/schema
 COPY services /app/services

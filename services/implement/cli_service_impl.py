@@ -4,9 +4,9 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from constants.common import AppTranslationKeys
-from models.users import Users
+from databases.users import Users
 from services.abstract.cli_service import CliService
-from utils import hash
+from services.implement.utils import hash
 from utils.logger import setup_logger
 
 

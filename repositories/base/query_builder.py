@@ -2,8 +2,8 @@ import json
 from typing import Optional, Type, TypeVar, Union
 
 import sqlalchemy
+from databases.base.class_base import Base
 from fastapi import HTTPException
-from models.base.class_base import Base
 from sqlalchemy import and_, func, or_, select
 from sqlalchemy.orm import selectinload
 from sqlalchemy.sql.expression import cast
@@ -142,7 +142,7 @@ def get_class_by_tablename(tablename: str):
 
     Example:
         >>> get_class_by_tablename("items")
-        <class 'app.models.ItemModel'>
+        <class 'app.databases.ItemModel'>
 
     Author:
         tranvanphuc.dev.it.2002@gmail.com
@@ -174,7 +174,9 @@ def get_join_table(join: dict) -> list:
     return []
 
 
-def get_filter(model: Type[ModelType], filters) -> sqlalchemy.sql.elements.BooleanClauseList:
+def get_filter(
+    model: Type[ModelType], filters
+) -> sqlalchemy.sql.elements.BooleanClauseList:
     """
     Constructs filter conditions for a SELECT statement.
 
