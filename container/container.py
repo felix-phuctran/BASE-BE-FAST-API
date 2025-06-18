@@ -10,7 +10,7 @@ from redis import asyncio as aioredis
 
 # Application constants
 from constants.common import AppTranslationKeys
-from core.env import Env
+from config.env import Env
 
 # Repositories - ORM
 from repositories.orm.orm_crud_user import ORMCRUDUser

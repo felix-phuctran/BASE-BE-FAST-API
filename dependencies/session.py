@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from sqlalchemy.orm import sessionmaker
 
-from core.env import Env, env
+from config.env import Env, env
 
 async_engine = create_async_engine(
     env.SQLALCHEMY_ADOOR_URI.unicode_string(),

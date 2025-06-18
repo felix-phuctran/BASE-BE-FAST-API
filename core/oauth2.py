@@ -8,7 +8,7 @@ from jose import JWTError, jwt
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from constants.common import AppTranslationKeys
-from core.env import env
+from config.env import env
 from dependencies import database_postgresql
 from repositories.orm.get_user_role_by_user_id import get_user_role_by_user_id
 from schema.user_schema import UserRoleDepartmentPermissionDto
